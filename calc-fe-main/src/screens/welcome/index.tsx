@@ -1,6 +1,7 @@
-import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text3D, Center } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 import { Link } from 'react-router-dom';
+
 import { Button } from '@/components/ui/button';
 
 export default function Welcome() {

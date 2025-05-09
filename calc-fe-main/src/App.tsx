@@ -1,11 +1,11 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import '@mantine/core/styles.css';
-import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';  // Mantine styles should be first
+import { MantineProvider } from '@mantine/core';  // MantineProvider import should come before router imports
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';  // Router imports should come after Mantine
 
-import Welcome from '@/screens/welcome';
 import Home from '@/screens/home';
+import Welcome from '@/screens/welcome';
 
-import '@/index.css';
+import '@/index.css';  // Global styles can come last
 
 const paths = [
     {

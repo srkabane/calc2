@@ -1,25 +1,34 @@
 {
-  "extends": [
-    "eslint/eslint-ebn",
-    "eslint/eslint-react",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    "react-app"
-  ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
     "import",
+    "react",
+    "react-hooks"
   ],
-  "settings": {
-    "react": {
-      "pragma": "React",
-      "version": "18.2.0"
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
   },
   "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
     "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "globals": {
     "__DEV__": true
@@ -58,12 +67,16 @@
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-underscore-dangle": "off",
-    "indent": [2, 4, {"SwitchCase": 1}],
-    "key-spacing": [2, {
-      "singleLine": {
-        "beforeColon": false,
-        "afterColon": true
-      }}],
+    "indent": [2, 4, { "SwitchCase": 1 }],
+    "key-spacing": [
+      2,
+      {
+        "singleLine": {
+          "beforeColon": false,
+          "afterColon": true
+        }
+      }
+    ],
     "@typescript-eslint/member-delimiter-style": 2,
     "@typescript-eslint/no-unsafe-declaration-merging": "off",
     "import/order": [
@@ -73,14 +86,9 @@
         "newlines-between": "always",
         "pathGroups": [
           {
-            "pattern": "{@(@/action|@/app|@/assets|@/client|@/components|@/constants|@/database|@/global|@/hooks|@/screens|@/storage|@/store|@/typings|@/utils)/**,@(@/constants|@/notifications|@/store|@/websocket)}",
+            "pattern": "{@/**,src/**}",
             "group": "external",
             "position": "after"
-          },
-          {
-            "pattern": "src/**",
-            "group": "parent",
-            "position": "before"
           }
         ],
         "alphabetize": {
@@ -89,11 +97,18 @@
         },
         "pathGroupsExcludedImportTypes": ["type"]
       }
+    ],
+    // Ignore the "intensity" and "position" properties for the unknown property rule
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": ["intensity", "position"]
+      }
     ]
   },
   "overrides": [
     {
-      "files": ["*.test.js", "*.test.jsx"],
+      "files": ["*.test.js", "*.test.jsx", "*.test.ts", "*.test.tsx"],
       "env": {
         "jest": true
       }
